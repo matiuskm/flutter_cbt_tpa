@@ -95,6 +95,8 @@ final poppinsFont14white = GoogleFonts.poppins(
 final poppinsFont18semiBold = GoogleFonts.poppins(
     fontSize: 18, fontWeight: FontWeight.w600, color: darkColor);
 
+final poppinsFont18 = GoogleFonts.poppins(fontSize: 18, color: darkColor);
+
 final poppinsFont16w500primaryColor = GoogleFonts.poppins(
     fontSize: 16, fontWeight: FontWeight.w500, color: primaryColor);
 

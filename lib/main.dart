@@ -5,6 +5,7 @@ import 'package:cbt_tpa_app/data/datasources/onboarding/onboarding_local_datasou
 import 'package:cbt_tpa_app/presentation/auth/blocs/login/login_bloc.dart';
 import 'package:cbt_tpa_app/presentation/auth/blocs/register/register_bloc.dart';
 import 'package:cbt_tpa_app/presentation/auth/pages/login_screen.dart';
+import 'package:cbt_tpa_app/presentation/home/blocs/content/content_bloc.dart';
 import 'package:cbt_tpa_app/presentation/home/pages/dashboard_page.dart';
 import 'package:cbt_tpa_app/presentation/onboarding/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(create: (context) => RegisterBloc()),
+        BlocProvider(create: (context) => ContentBloc()),
       ],
       child: MaterialApp(
         title: 'CBT TPA',

@@ -1,6 +1,7 @@
 import 'package:cbt_tpa_app/core/assets/assets.gen.dart';
 import 'package:cbt_tpa_app/core/extensions/build_context_ext.dart';
 import 'package:cbt_tpa_app/presentation/home/pages/aboutus_page.dart';
+import 'package:cbt_tpa_app/presentation/home/pages/tips_page.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/header_home.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/menu_home.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/title_section.dart';
@@ -46,7 +47,9 @@ class _HomePageState extends State<HomePage> {
               MenuHome(
                 imagePath: Assets.images.menu.tips.path,
                 label: 'Tips & Tricks',
-                onPressed: () {},
+                onPressed: () {
+                  context.push(const TipsPage());
+                },
               ),
               MenuHome(
                 imagePath: Assets.images.menu.materi.path,

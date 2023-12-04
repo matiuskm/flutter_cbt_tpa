@@ -44,6 +44,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/aboutus-header.png
+  AssetGenImage get aboutusHeader =>
+      const AssetGenImage('assets/images/aboutus-header.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
@@ -71,7 +75,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [logo, onboard1, onboard2, onboard3, onboard4, ornament];
+      [aboutusHeader, logo, onboard1, onboard2, onboard3, onboard4, ornament];
 }
 
 class $AssetsImagesMenuGen {
