@@ -83,6 +83,9 @@ final ralewayFont12semiBold = GoogleFonts.raleway(
 final poppinsFont24semiBold = GoogleFonts.poppins(
     fontSize: 24, fontWeight: FontWeight.w600, color: darkColor);
 
+final poppinsFont20SemiBold = GoogleFonts.poppins(
+    fontSize: 20, fontWeight: FontWeight.w500, color: darkColor);
+
 final poppinsFont20whiteSemiBold = GoogleFonts.poppins(
     fontSize: 20, fontWeight: FontWeight.w500, color: whiteColor);
 

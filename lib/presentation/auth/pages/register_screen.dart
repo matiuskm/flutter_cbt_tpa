@@ -1,7 +1,9 @@
+import 'package:cbt_tpa_app/core/assets/assets.gen.dart';
 import 'package:cbt_tpa_app/core/constants/theme.dart';
 import 'package:cbt_tpa_app/core/extensions/build_context_ext.dart';
 import 'package:cbt_tpa_app/data/models/models.dart';
 import 'package:cbt_tpa_app/presentation/auth/blocs/register/register_bloc.dart';
+import 'package:cbt_tpa_app/presentation/auth/pages/login_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -173,13 +175,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         state.maybeWhen(
                           orElse: () {},
                           success: (data) {
-                            context.pop();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Pendaftaran berhasil"),
-                                backgroundColor: Colors.green,
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                Future.delayed(const Duration(seconds: 3), () {
+                                  context.pushReplacement(const LoginScreen());
+                                });
+                                return AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  title: Image.asset(
+                                    Assets.images.confetti.path,
+                                    height: 69,
+                                  ),
+                                  content: Text.rich(
+                                    textAlign: TextAlign.center,
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Pendaftaran Berhasil\n',
+                                          style: poppinsFont20SemiBold,
+                                        ),
+                                        TextSpan(
+                                          text:
+                                              'Akun Anda telah berhasil dibuat. Silakan login untuk melanjutkan.',
+                                          style: poppinsFont12wNormal,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text('Dialihkan...')),
+                                  ],
+                                );
+                              },
                             );
+
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(
+                            //     content: Text("Pendaftaran berhasil"),
+                            //     backgroundColor: Colors.green,
+                            //   ),
+                            // );
                           },
                           error: (message) {
                             ScaffoldMessenger.of(context).showSnackBar(

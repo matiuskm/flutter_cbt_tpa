@@ -5,6 +5,8 @@ import 'package:cbt_tpa_app/presentation/home/pages/tips_page.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/header_home.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/menu_home.dart';
 import 'package:cbt_tpa_app/presentation/home/widgets/title_section.dart';
+import 'package:cbt_tpa_app/presentation/materi/pages/materi_page.dart';
+import 'package:cbt_tpa_app/presentation/quiz/pages/quiz_list_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,12 +56,16 @@ class _HomePageState extends State<HomePage> {
               MenuHome(
                 imagePath: Assets.images.menu.materi.path,
                 label: 'Materi',
-                onPressed: () {},
+                onPressed: () {
+                  context.push(const MateriPage());
+                },
               ),
               MenuHome(
                 imagePath: Assets.images.menu.quiz.path,
                 label: 'Quiz',
-                onPressed: () {},
+                onPressed: () {
+                  context.push(const QuizListPage());
+                },
               ),
             ],
           ),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cbt_tpa_app/core/constants/variables.dart';
 import 'package:cbt_tpa_app/data/datasources/auth/auth_local_datasources.dart';
 import 'package:cbt_tpa_app/data/models/responses/content/content_response_model.dart';

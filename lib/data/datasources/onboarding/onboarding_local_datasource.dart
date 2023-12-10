@@ -4,7 +4,7 @@ class OnboardingLocalDatasource {
   Future<bool> getAlreadyPassed() async {
     final prefs = await SharedPreferences.getInstance();
     final flag = prefs.getBool('is_first_time');
-    return flag!;
+    return flag ?? false;
   }
 
   Future<void> setAlreadyPassed() async {

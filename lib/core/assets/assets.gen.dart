@@ -15,8 +15,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bell.png
   AssetGenImage get bell => const AssetGenImage('assets/icons/bell.png');
 
+  /// File path: assets/icons/clock.png
+  AssetGenImage get clock => const AssetGenImage('assets/icons/clock.png');
+
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
+  /// File path: assets/icons/list.png
+  AssetGenImage get list => const AssetGenImage('assets/icons/list.png');
 
   /// File path: assets/icons/message.png
   AssetGenImage get message => const AssetGenImage('assets/icons/message.png');
@@ -29,6 +35,12 @@ class $AssetsIconsGen {
   AssetGenImage get rightArrow =>
       const AssetGenImage('assets/icons/right-arrow.png');
 
+  /// File path: assets/icons/sort.png
+  AssetGenImage get sort => const AssetGenImage('assets/icons/sort.png');
+
+  /// File path: assets/icons/timer.png
+  AssetGenImage get timer => const AssetGenImage('assets/icons/timer.png');
+
   /// File path: assets/icons/user-icon.png
   AssetGenImage get userIcon =>
       const AssetGenImage('assets/icons/user-icon.png');
@@ -37,8 +49,19 @@ class $AssetsIconsGen {
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [bell, home, message, notification, rightArrow, userIcon, user];
+  List<AssetGenImage> get values => [
+        bell,
+        clock,
+        home,
+        list,
+        message,
+        notification,
+        rightArrow,
+        sort,
+        timer,
+        userIcon,
+        user
+      ];
 }
 
 class $AssetsImagesGen {
@@ -48,8 +71,25 @@ class $AssetsImagesGen {
   AssetGenImage get aboutusHeader =>
       const AssetGenImage('assets/images/aboutus-header.png');
 
+  /// File path: assets/images/confetti.png
+  AssetGenImage get confetti =>
+      const AssetGenImage('assets/images/confetti.png');
+
+  /// File path: assets/images/finish.png
+  AssetGenImage get finish => const AssetGenImage('assets/images/finish.png');
+
+  /// File path: assets/images/logic-test.png
+  AssetGenImage get logicTest =>
+      const AssetGenImage('assets/images/logic-test.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
+  /// File path: assets/images/materi1.png
+  AssetGenImage get materi1 => const AssetGenImage('assets/images/materi1.png');
+
+  /// File path: assets/images/materi2.png
+  AssetGenImage get materi2 => const AssetGenImage('assets/images/materi2.png');
 
   $AssetsImagesMenuGen get menu => const $AssetsImagesMenuGen();
 
@@ -73,9 +113,26 @@ class $AssetsImagesGen {
   AssetGenImage get ornament =>
       const AssetGenImage('assets/images/ornament.png');
 
+  /// File path: assets/images/quiz-category.png
+  AssetGenImage get quizCategory =>
+      const AssetGenImage('assets/images/quiz-category.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [aboutusHeader, logo, onboard1, onboard2, onboard3, onboard4, ornament];
+  List<AssetGenImage> get values => [
+        aboutusHeader,
+        confetti,
+        finish,
+        logicTest,
+        logo,
+        materi1,
+        materi2,
+        onboard1,
+        onboard2,
+        onboard3,
+        onboard4,
+        ornament,
+        quizCategory
+      ];
 }
 
 class $AssetsImagesMenuGen {

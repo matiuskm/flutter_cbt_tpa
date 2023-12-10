@@ -1,3 +1,5 @@
+import 'package:cbt_tpa_app/core/assets/assets.gen.dart';
+import 'package:cbt_tpa_app/core/components/custom_scaffold.dart';
 import 'package:cbt_tpa_app/core/constants/theme.dart';
 import 'package:cbt_tpa_app/core/extensions/build_context_ext.dart';
 import 'package:cbt_tpa_app/presentation/home/blocs/content/content_bloc.dart';
@@ -20,61 +22,49 @@ class _TipsPageState extends State<TipsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tips dan Trik', style: poppinsFont20whiteSemiBold),
-        backgroundColor: primaryColor,
-        foregroundColor: whiteColor,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: primaryColor,
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
-                ),
-                width: context.deviceWidth,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+    return CustomScaffold(
+      appBarTitle: Text('Tips dan Trik', style: poppinsFont20whiteSemiBold),
+      body: BlocBuilder<ContentBloc, ContentState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+              orElse: () {
+                return Center(
+                  child: Text('no data / error', style: poppinsFont18),
+                );
+              },
+              loading: () {
+                return const Center(child: CircularProgressIndicator());
+              },
+              loaded: (data) => ListView(
                     children: [
-                      const SizedBox(
-                        height: 16,
+                      data.data.imageUrl.isEmpty
+                          ? Image.asset(Assets.images.aboutusHeader.path,
+                              width: context.deviceWidth,
+                              height: 470.0,
+                              fit: BoxFit.cover)
+                          : Image.network(
+                              data.data.imageUrl,
+                              width: context.deviceWidth,
+                              height: 470.0,
+                              fit: BoxFit.cover,
+                            ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              data.data.content.isEmpty
+                                  ? 'no content'
+                                  : data.data.content,
+                              style: poppinsFont18,
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
                       ),
-                      BlocBuilder<ContentBloc, ContentState>(
-                          builder: (context, state) {
-                        return state.maybeWhen(orElse: () {
-                          return Text(
-                            '',
-                            style: poppinsFont18,
-                            textAlign: TextAlign.justify,
-                          );
-                        }, loading: () {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }, loaded: (data) {
-                          return Text(
-                            data.data,
-                            style: poppinsFont18,
-                            textAlign: TextAlign.justify,
-                          );
-                        });
-                      }),
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+                  ));
+        },
       ),
     );
   }

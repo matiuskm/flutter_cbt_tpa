@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cbt_tpa_app/core/assets/assets.gen.dart';
+import 'package:cbt_tpa_app/core/components/custom_scaffold.dart';
 import 'package:cbt_tpa_app/core/constants/theme.dart';
 import 'package:cbt_tpa_app/core/extensions/build_context_ext.dart';
 import 'package:cbt_tpa_app/presentation/home/blocs/content/content_bloc.dart';
@@ -21,77 +23,68 @@ class _AboutUsPageState extends State<AboutUsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('About Us', style: poppinsFont20whiteSemiBold),
-        backgroundColor: primaryColor,
-        foregroundColor: whiteColor,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: primaryColor,
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
+    return CustomScaffold(
+      appBarTitle: Text('About Us', style: poppinsFont20whiteSemiBold),
+      body: BlocBuilder<ContentBloc, ContentState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () {
+              return const Center(child: Text('Something went wrong'));
+            },
+            loading: () {
+              return const Center(child: CircularProgressIndicator());
+            },
+            loaded: (data) {
+              return ListView(
+                children: [
+                  data.data.imageUrl.isEmpty
+                      ? Image.asset(Assets.images.aboutusHeader.path,
+                          width: context.deviceWidth,
+                          height: 470.0,
+                          fit: BoxFit.cover)
+                      : CachedNetworkImage(
+                          imageUrl: data.data.imageUrl,
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          width: context.deviceWidth,
+                          height: 470.0,
+                          fit: BoxFit.cover,
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          data.data.content.isEmpty
+                              ? 'no content'
+                              : data.data.content,
+                          style: poppinsFont18,
+                          textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(height: 24.0),
+                        Text(
+                          'Contributors',
+                          style: poppinsFont18semiBold,
+                        ),
+                        const SizedBox(height: 16.0),
+                        const ContributorItem(
+                          name: 'Saiful Bahri',
+                          role: 'Mentor & Developer',
+                        ),
+                        const ContributorItem(
+                          name: 'LZCDR',
+                          role: 'Developer',
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                width: context.deviceWidth,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        Assets.images.aboutusHeader.path,
-                        height: 293.0,
-                      ),
-                      const SizedBox(height: 16.0),
-                      BlocBuilder<ContentBloc, ContentState>(
-                          builder: (context, state) {
-                        return state.maybeWhen(orElse: () {
-                          return Text(
-                            '',
-                            style: poppinsFont18,
-                            textAlign: TextAlign.justify,
-                          );
-                        }, loading: () {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }, loaded: (data) {
-                          return Text(
-                            data.data,
-                            style: poppinsFont18,
-                            textAlign: TextAlign.justify,
-                          );
-                        });
-                      }),
-                      const SizedBox(height: 24.0),
-                      Text(
-                        'Contributors',
-                        style: poppinsFont18semiBold,
-                      ),
-                      const SizedBox(height: 16.0),
-                      const ContributorItem(
-                        name: 'Saiful Bahri',
-                        role: 'Mentor & Developer',
-                      ),
-                      const ContributorItem(
-                        name: 'LZCDR',
-                        role: 'Developer',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+                ],
+              );
+            },
+          );
+        },
       ),
     );
   }

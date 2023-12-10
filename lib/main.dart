@@ -1,13 +1,21 @@
 import 'package:cbt_tpa_app/core/constants/theme.dart';
 import 'package:cbt_tpa_app/core/constants/constants.dart';
 import 'package:cbt_tpa_app/data/datasources/auth/auth_local_datasources.dart';
+import 'package:cbt_tpa_app/data/datasources/auth/auth_remote_datasource.dart';
+import 'package:cbt_tpa_app/data/datasources/content/content_remote_datasource.dart';
+import 'package:cbt_tpa_app/data/datasources/material/materi_remote_datasource.dart';
 import 'package:cbt_tpa_app/data/datasources/onboarding/onboarding_local_datasource.dart';
+import 'package:cbt_tpa_app/data/datasources/quiz/quiz_remote_datasource.dart';
 import 'package:cbt_tpa_app/presentation/auth/blocs/login/login_bloc.dart';
+import 'package:cbt_tpa_app/presentation/auth/blocs/logout/logout_bloc.dart';
 import 'package:cbt_tpa_app/presentation/auth/blocs/register/register_bloc.dart';
 import 'package:cbt_tpa_app/presentation/auth/pages/login_screen.dart';
 import 'package:cbt_tpa_app/presentation/home/blocs/content/content_bloc.dart';
 import 'package:cbt_tpa_app/presentation/home/pages/dashboard_page.dart';
+import 'package:cbt_tpa_app/presentation/materi/blocs/materi/materi_bloc.dart';
 import 'package:cbt_tpa_app/presentation/onboarding/pages/onboarding_screen.dart';
+import 'package:cbt_tpa_app/presentation/quiz/blocs/create_test/create_test_bloc.dart';
+import 'package:cbt_tpa_app/presentation/quiz/blocs/quiz_by_category/quiz_by_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +32,14 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(create: (context) => RegisterBloc()),
-        BlocProvider(create: (context) => ContentBloc()),
+        BlocProvider(
+            create: (context) => ContentBloc(ContentRemoteDatasource())),
+        BlocProvider(create: (context) => MateriBloc(MateriRemoteDatasource())),
+        BlocProvider(create: (context) => LogoutBloc(AuthRemoteDatasource())),
+        BlocProvider(
+            create: (context) => CreateTestBloc(QuizRemoteDatasource())),
+        BlocProvider(
+            create: (context) => QuizByCategoryBloc(QuizRemoteDatasource())),
       ],
       child: MaterialApp(
         title: 'CBT TPA',

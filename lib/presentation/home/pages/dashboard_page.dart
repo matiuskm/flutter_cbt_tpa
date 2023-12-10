@@ -1,9 +1,9 @@
 import 'package:cbt_tpa_app/core/assets/assets.gen.dart';
 import 'package:cbt_tpa_app/core/constants/theme.dart';
 import 'package:cbt_tpa_app/presentation/home/pages/home_page.dart';
-import 'package:cbt_tpa_app/presentation/home/pages/profile_page.dart';
-
 import 'package:cbt_tpa_app/presentation/home/widgets/nav_menu.dart';
+import 'package:cbt_tpa_app/presentation/materi/pages/materi_page.dart';
+import 'package:cbt_tpa_app/presentation/profile/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(child: Text('Material')),
+    const MateriPage(),
     const Center(child: Text('Notification')),
     const ProfilePage(),
   ];
